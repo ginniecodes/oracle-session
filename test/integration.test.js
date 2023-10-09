@@ -49,7 +49,6 @@ function mockServer(store) {
   app.post("/", function (req, res) {
     return req.session.destroy((err) => {
       if (err) {
-        console.log("ERROR IN POST", err)
         return res.status(400).statusMessage(err.message).end();
       }
 
@@ -72,7 +71,6 @@ async function lifecycleTest(server) {
   expect(response2.body.views).to.equal(1);
   expect(response2.headers["set-cookie"]).to.exist;
   expect(response2.headers["set-cookie"][0]).to.match(/^connect\.sid/);
-  console.log(response2.sessionID);
 
   const response3 = await request(server)
     .get("/")
