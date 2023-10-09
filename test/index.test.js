@@ -142,6 +142,6 @@ async function lifecycleTestWithPromise(store) {
     let emptySession = await store.get(sessionId);
     expect(emptySession).to.be.null;
     await store.clear();
-    let total = await store.length();
-    expect(total).to.equal(0);
+    let all = await store.all();
+    expect(all.length).to.equal(0);
 }
